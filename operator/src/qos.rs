@@ -3,8 +3,8 @@
 //! Submits operator liveness proofs and training progress to the Tangle chain.
 //! Metrics include epoch progress, loss, GPU utilization, and peer connectivity.
 
-use blueprint_std::sync::Arc;
-use blueprint_std::time::Duration;
+use blueprint_sdk::std::sync::Arc;
+use blueprint_sdk::std::time::Duration;
 
 use alloy::{
     network::EthereumWallet,
@@ -71,13 +71,13 @@ pub struct TrainingMetrics {
 }
 
 /// Global training metrics (updated by coordinator).
-static TRAINING_METRICS: blueprint_std::sync::OnceLock<Arc<blueprint_std::sync::RwLock<TrainingMetrics>>> =
-    blueprint_std::sync::OnceLock::new();
+static TRAINING_METRICS: blueprint_sdk::std::sync::OnceLock<Arc<blueprint_sdk::std::sync::RwLock<TrainingMetrics>>> =
+    blueprint_sdk::std::sync::OnceLock::new();
 
 /// Get or initialize the global training metrics.
-pub fn training_metrics() -> Arc<blueprint_std::sync::RwLock<TrainingMetrics>> {
+pub fn training_metrics() -> Arc<blueprint_sdk::std::sync::RwLock<TrainingMetrics>> {
     TRAINING_METRICS
-        .get_or_init(|| Arc::new(blueprint_std::sync::RwLock::new(TrainingMetrics::default())))
+        .get_or_init(|| Arc::new(blueprint_sdk::std::sync::RwLock::new(TrainingMetrics::default())))
         .clone()
 }
 

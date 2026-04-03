@@ -9,7 +9,7 @@ pub mod server;
 pub mod training;
 pub mod verification;
 
-use blueprint_std::sync::Arc;
+use blueprint_sdk::std::sync::Arc;
 
 use alloy_sol_types::sol;
 use blueprint_sdk::macros::debug_job;
@@ -75,8 +75,8 @@ pub const LEAVE_JOB: u8 = 2;
 
 // --- Shared coordinator ---
 
-static COORDINATOR: blueprint_std::sync::OnceLock<Arc<TrainingCoordinator>> =
-    blueprint_std::sync::OnceLock::new();
+static COORDINATOR: blueprint_sdk::std::sync::OnceLock<Arc<TrainingCoordinator>> =
+    blueprint_sdk::std::sync::OnceLock::new();
 
 fn get_coordinator() -> Result<&'static Arc<TrainingCoordinator>, RunnerError> {
     COORDINATOR

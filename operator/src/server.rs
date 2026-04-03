@@ -7,7 +7,7 @@
 //! - GET  /v1/training/jobs/:id/checkpoint — download latest checkpoint
 //! - GET  /health                    — health check
 
-use blueprint_std::sync::Arc;
+use blueprint_sdk::std::sync::Arc;
 
 use axum::{
     extract::{Path, State},

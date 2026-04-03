@@ -3,8 +3,8 @@
 //! Provides gossip-based momentum update broadcasting and direct peer-to-peer
 //! checkpoint transfers. Built on blueprint-networking's gossipsub + request-response.
 
-use blueprint_std::sync::Arc;
-use blueprint_std::time::Duration;
+use blueprint_sdk::std::sync::Arc;
+use blueprint_sdk::std::time::Duration;
 
 use serde::{Deserialize, Serialize};
 use tokio::sync::{mpsc, RwLock};
@@ -59,7 +59,7 @@ pub struct TrainingNetwork {
     /// Channel for outgoing coordination messages.
     coordination_tx: mpsc::Sender<Vec<u8>>,
     /// Known peers per job.
-    job_peers: Arc<RwLock<blueprint_std::collections::HashMap<u64, Vec<PeerId>>>>,
+    job_peers: Arc<RwLock<blueprint_sdk::std::collections::HashMap<u64, Vec<PeerId>>>>,
     /// Configuration.
     config: NetworkConfig,
 }
@@ -70,7 +70,7 @@ impl TrainingNetwork {
         let (momentum_tx, mut momentum_rx) = mpsc::channel::<Vec<u8>>(256);
         let (coordination_tx, mut coordination_rx) = mpsc::channel::<Vec<u8>>(64);
         let momentum_inbox = Arc::new(RwLock::new(Vec::new()));
-        let job_peers = Arc::new(RwLock::new(blueprint_std::collections::HashMap::new()));
+        let job_peers = Arc::new(RwLock::new(blueprint_sdk::std::collections::HashMap::new()));
 
         // Generate a peer ID from config or random
         let peer_id = uuid::Uuid::new_v4().to_string();

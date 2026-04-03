@@ -4,7 +4,7 @@
 //! as it exposes an HTTP API matching the TrainingBackend trait. The backend runs
 //! as a separate process (typically a Python server) and communicates via HTTP.
 
-use blueprint_std::time::Duration;
+use blueprint_sdk::std::time::Duration;
 
 use ndarray::Array2;
 use serde::{Deserialize, Serialize};

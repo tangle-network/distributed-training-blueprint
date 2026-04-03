@@ -1,4 +1,4 @@
-use blueprint_std::sync::Arc;
+use blueprint_sdk::std::sync::Arc;
 
 use alloy_sol_types::SolValue;
 use blueprint_sdk::contexts::tangle::TangleClientContext;
@@ -49,10 +49,10 @@ async fn main() -> Result<(), blueprint_sdk::Error> {
         let payload = registration_payload(&config);
         let output_path = env.registration_output_path();
         if let Some(parent) = output_path.parent() {
-            blueprint_std::fs::create_dir_all(parent)
+            blueprint_sdk::std::fs::create_dir_all(parent)
                 .map_err(|e| blueprint_sdk::Error::Other(e.to_string()))?;
         }
-        blueprint_std::fs::write(&output_path, &payload)
+        blueprint_sdk::std::fs::write(&output_path, &payload)
             .map_err(|e| blueprint_sdk::Error::Other(e.to_string()))?;
         tracing::info!(
             path = %output_path.display(),

@@ -1,7 +1,7 @@
 //! Operator configuration — training, networking, billing, GPU, and Tangle settings.
 
-use blueprint_std::fmt;
-use blueprint_std::path::PathBuf;
+use blueprint_sdk::std::fmt;
+use blueprint_sdk::std::path::PathBuf;
 
 use serde::{Deserialize, Serialize};
 
@@ -159,7 +159,7 @@ pub struct GpuConfig {
 // --- Defaults ---
 
 fn default_training_endpoint() -> String {
-    blueprint_std::env::var("TRAINING_ENDPOINT").unwrap_or_else(|_| "http://localhost:5000".to_string())
+    blueprint_sdk::std::env::var("TRAINING_ENDPOINT").unwrap_or_else(|_| "http://localhost:5000".to_string())
 }
 
 fn default_sync_interval() -> u64 {

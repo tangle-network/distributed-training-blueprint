@@ -8,7 +8,7 @@
 //!
 //! Reference: https://arxiv.org/abs/2411.19870
 
-use blueprint_std::sync::Arc;
+use blueprint_sdk::std::sync::Arc;
 
 use ndarray::{Array1, Array2, Axis};
 use serde::{Deserialize, Serialize};

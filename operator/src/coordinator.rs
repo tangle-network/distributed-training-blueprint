@@ -3,9 +3,9 @@
 //! Manages the distributed training loop: data shard assignment, peer join/leave,
 //! DeMo sync barriers, and on-chain checkpoint submission.
 
-use blueprint_std::collections::HashMap;
-use blueprint_std::sync::Arc;
-use blueprint_std::time::Duration;
+use blueprint_sdk::std::collections::HashMap;
+use blueprint_sdk::std::sync::Arc;
+use blueprint_sdk::std::time::Duration;
 
 use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;
@@ -130,11 +130,7 @@ impl TrainingCoordinator {
         jobs.insert(job_id, job);
         drop(jobs);
 
-        // Run training loop in background
-        let coord = self.config.clone();
-        let network = self.network.clone();
-        let our_peer = self.our_peer_id.clone();
-
+        // Run training loop
         let result = self
             .run_training_loop(job_id, sync_interval_steps)
             .await?;
@@ -383,7 +379,7 @@ impl TrainingCoordinator {
             .ok_or_else(|| anyhow::anyhow!("job not found"))?;
         let total_epochs = job.total_epochs;
         let base_model = job.base_model.clone();
-        let method = job.method.clone();
+        let _method = job.method.clone();
         drop(jobs);
 
         // Initialize training backend

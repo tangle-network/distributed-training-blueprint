@@ -1,6 +1,6 @@
 //! GPU detection via nvidia-smi.
 
-use blueprint_std::process::Command;
+use blueprint_sdk::std::process::Command;
 use serde::{Deserialize, Serialize};
 
 /// Information about a single GPU.

@@ -4,7 +4,7 @@
 //! state, optimizer state, and training metadata. The SHA-256 hash is submitted
 //! on-chain for verification and resumability.
 
-use blueprint_std::path::{Path, PathBuf};
+use blueprint_sdk::std::path::{Path, PathBuf};
 
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -114,7 +114,7 @@ pub async fn load_checkpoint(path: &Path) -> anyhow::Result<Checkpoint> {
 
 /// Compute SHA-256 hash of a checkpoint file.
 pub fn hash_checkpoint(path: &Path) -> anyhow::Result<[u8; 32]> {
-    let data = blueprint_std::fs::read(path)?;
+    let data = blueprint_sdk::std::fs::read(path)?;
     let mut hasher = Sha256::new();
     hasher.update(&data);
     Ok(hasher.finalize().into())
