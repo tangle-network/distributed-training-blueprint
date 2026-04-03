@@ -1,0 +1,16 @@
+fastapi>=0.110.0
+uvicorn>=0.27.0
+pydantic>=2.0
+
+# Backend deps (install the one you need):
+# pip install unsloth          # Fastest, recommended
+# pip install trl>=1.0         # HuggingFace TRL
+# pip install axolotl           # YAML-driven
+# pip install torchtune          # PyTorch native
+
+# Always needed:
+torch>=2.2.0
+transformers>=4.40.0
+datasets>=2.18.0
+peft>=0.10.0
+bitsandbytes>=0.43.0
