@@ -301,8 +301,9 @@ pub fn top_k_sparsify(tensor: &Array2<f32>, ratio: f32) -> (Vec<u32>, Vec<f32>) 
         .collect();
 
     // Partial sort to find top-k threshold
-    indexed.select_nth_unstable_by(k.min(indexed.len()) - 1, |a, b| {
-        b.1.partial_cmp(&a.1).unwrap_or(std::cmp::Ordering::Equal)
+    let len = indexed.len();
+    indexed.select_nth_unstable_by(k.min(len) - 1, |a, b| {
+        b.1.partial_cmp(&a.1).unwrap_or(core::cmp::Ordering::Equal)
     });
 
     let mut top_k: Vec<(u32, f32)> = indexed[..k]

@@ -18,6 +18,7 @@ use blueprint_sdk::runner::error::RunnerError;
 use blueprint_sdk::runner::BackgroundService;
 use blueprint_sdk::tangle::extract::{TangleArg, TangleResult};
 use blueprint_sdk::tangle::layers::TangleLayer;
+use blueprint_sdk::Job;
 use tokio::sync::oneshot;
 
 use crate::config::OperatorConfig;
@@ -134,7 +135,7 @@ pub async fn handle_training_job(
 
     Ok(TangleResult(TrainingJobResult {
         jobId: request.jobId,
-        finalCheckpointHash: result.checkpoint_hash,
+        finalCheckpointHash: alloy::primitives::FixedBytes(result.checkpoint_hash),
         totalSteps: result.total_steps,
         finalEpoch: result.final_epoch,
     }))
